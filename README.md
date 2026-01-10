@@ -6,6 +6,9 @@ CodeArena is a full-stack online coding platform inspired by LeetCode and CodeCh
 It allows users to register, log in, solve coding problems, submit code in multiple languages, and view leaderboards.  
 The platform is fully containerized using Docker and deployed on AWS with MongoDB Atlas as the backend database.
 
+[Link Text](http://3.106.129.231:8000/)
+
+
 ---
 
 ## 🛠️ Tech Stack
