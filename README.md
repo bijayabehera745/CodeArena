@@ -45,7 +45,7 @@ The platform is fully containerized using Docker and deployed on AWS with MongoD
 - Automatic Output Validation
 - Leaderboard System
 - Secure Environment Variable Handling
-- Fully Dockerized & Cloud Deployed
+- Fully Dockerized & Cloud Deployed on AWS
 
 ---
 
@@ -54,11 +54,49 @@ The platform is fully containerized using Docker and deployed on AWS with MongoD
 ```text
 User → Browser
       ↓
-   Nginx (Reverse Proxy)
-      ↓
-   Gunicorn (Django App)
+   Gunicorn (Django App running inside Docker)
       ↓
    MongoDB Atlas (Cloud Database)
 
 Code Execution Flow:
 User Code → Language-specific Docker Container → Output → Django → User
+```
+---
+
+## ⚙️ Local Setup
+```
+git clone https://github.com/yourusername/codearena.git
+cd codearena
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py runserver
+
+```
+---
+
+## 🐳 Docker Setup
+```
+docker-compose up -d --build
+
+```
+
+---
+
+## 🌍 Live Deployment
+
+Deployed on AWS EC2 using Docker & Docker Compose
+Application served using Gunicorn inside Docker
+Database hosted on MongoDB Atlas
+
+## 🧠 Learning Outcomes
+
+Hands-on experience with Docker & Docker Compose
+
+Cloud deployment using AWS EC2
+
+Secure configuration using environment variables
+
+Real-world backend architecture design
+
+Debugging production-level issues (Gunicorn, MongoDB, Docker, AWS networking)
