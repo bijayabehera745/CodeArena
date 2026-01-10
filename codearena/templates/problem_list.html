@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">📚 Problems</h2>
+
+<div class="row">
+    {% for problem in problems %}
+    <div class="col-md-4 mb-4">
+        <div class="card p-3 h-100">
+
+            <h5>{{ problem.title|truncatechars:15 }}</h5>
+
+            <p style="color: #cbd5e1;">{{ problem.description|truncatechars:80 }}</p>
+
+            <div class="d-flex justify-content-between align-items-center mb-2">
+
+                <!-- Difficulty Badge -->
+                {% if problem.difficulty == "Easy" %}
+                    <span class="badge badge-easy">Easy</span>
+                {% elif problem.difficulty == "Medium" %}
+                    <span class="badge badge-medium">Medium</span>
+                {% else %}
+                    <span class="badge badge-hard">Hard</span>
+                {% endif %}
+
+                <!-- Solved Badge -->
+                {% if problem.id in solved_problem_ids %}
+                    <span class="badge bg-success">Solved</span>
+                {% else %}
+                    <span class="badge bg-secondary">Unsolved</span>
+                {% endif %}
+            </div>
+
+            <a href="{% url 'problem_detail' problem.id %}" class="btn btn-outline-light btn-sm mt-auto">
+                Solve →
+            </a>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

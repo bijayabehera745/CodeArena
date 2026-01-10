@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4"> Welcome, {{ request.user.username }}</h2>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h5>Total Problems</h5>
+            <h2>{{ total_problems }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h5>Solved</h5>
+            <h2>{{ solved_problems }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h5>Submissions</h5>
+            <h2>{{ total_submissions }}</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h5>Accuracy</h5>
+            <h2>{{ accuracy }}%</h2>
+        </div>
+    </div>
+</div>
+
+<h4 class="mb-3">Recent Submissions</h4>
+
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>Problem</th>
+            <th>Status</th>
+            <th>Language</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sub in recent_submissions %}
+        <tr>
+            <td>{{ sub.problem.title }}</td>
+            {% comment %} Color coding for different status {% endcomment %}
+            <td>
+                {% if sub.status == "Accepted" %}
+                    <span class="badge bg-success">Accepted</span>
+                {% elif sub.status == "Wrong Answer" %}
+                    <span class="badge bg-danger">Wrong Answer</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">{{ sub.status }}</span>
+                {% endif %}
+            </td>
+            <td>{{ sub.language }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No submissions yet</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Leaderboard</h2>
+
+<div class="card p-3">
+
+<table class="table table-dark table-hover align-middle">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>User</th>
+            <th>Accepted</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in leaderboard %}
+        <tr {% if row.user__username == request.user.username %} style="background-color:#1e40af;" {% endif %}>
+            <td>
+                {% if forloop.counter == 1 %} 🥇
+                {% elif forloop.counter == 2 %} 🥈
+                {% elif forloop.counter == 3 %} 🥉
+                {% else %} {{ forloop.counter }}
+                {% endif %}
+            </td>
+            <td>{{ row.user__username }}</td>
+            <td><span class="badge bg-success">{{ row.total_accepted }}</span></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+{% endblock %}

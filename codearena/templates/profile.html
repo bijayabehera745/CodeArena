@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">👤 {{ user.username }}'s Profile</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card p-3 text-center">
+            <h5>Total Submissions</h5>
+            <h2>{{ total_submissions }}</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 text-center">
+            <h5>Solved Problems</h5>
+            <h2>{{ solved_count }}</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 text-center">
+            <h5>Accuracy</h5>
+            <h2>{{ accuracy }}%</h2>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4">
+    <h4 class="mb-3">✅ Solved Problems</h4>
+
+    <ul class="list-group list-group-flush">
+        {% for problem in solved_problems %}
+        <li class="list-group-item bg-dark text-light">
+            {{ problem.title }}
+            <span class="badge bg-success float-end">Solved</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item bg-dark text-light">
+            No problems solved yet.
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

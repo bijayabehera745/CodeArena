@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card p-4 mb-4">
+
+    <h3 class="mb-2">{{ problem.title }}</h3>
+
+    <!-- Difficulty Badge -->
+    {% if problem.difficulty == "Easy" %}
+        <span class="badge badge-easy mb-3">Easy</span>
+    {% elif problem.difficulty == "Medium" %}
+        <span class="badge badge-medium mb-3">Medium</span>
+    {% else %}
+        <span class="badge badge-hard mb-3">Hard</span>
+    {% endif %}
+
+    <p style="color:#cbd5e1;">{{ problem.description }}</p>
+
+    <hr style="border-color:#334155;">
+
+    <h5>Sample Input</h5>
+    <pre class="bg-dark p-2 rounded">{{ problem.sample_input }}</pre>
+
+    <h5>Sample Output</h5>
+    <pre class="bg-dark p-2 rounded">{{ problem.sample_output }}</pre>
+
+</div>
+
+<div class="card p-4">
+
+    <h4 class="mb-3"> Write Your Code</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Language</label>
+            <select name="language" class="form-select bg-dark text-light">
+                <option value="python">Python</option>
+                <option value="cpp">C++</option>
+                <option value="java">Java</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Code</label>
+            <textarea name="code" rows="10" class="form-control bg-dark text-light" placeholder="Write your code here..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit Code</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,15 @@
+<h2>Execution Result</h2>
+
+{% if success %}
+    <p style="color:green;">Executed Successfully ✅</p>
+{% else %}
+    <p style="color:red;">Execution Failed ❌</p>
+{% endif %}
+
+<h3>Verdict: {{ verdict }} </h3>
+
+<pre style="background:#111; color:#0f0; padding:10px;">
+{{ output }}
+</pre>
+
+<a href="/problems/">Back to Problems</a>
