@@ -41,16 +41,18 @@ def dashboard(request):
     solved_problem_ids = set()
 
     for sub in accepted_subs:
-        solved_problem_ids.add(sub.problem.id) # type: ignore
+        if sub.problem:
+            solved_problem_ids.add(str(sub.problem.id)) # type: ignore
 
     solved_problems = len(solved_problem_ids)
+    
     total_submissions = Submission.objects.filter(user=user).count()
 
     accuracy = 0
     if total_submissions > 0:
         accuracy = int((solved_problems / total_submissions) * 100)
 
-    recent_submissions = Submission.objects.filter(user=user).order_by('-id')[:5]
+    recent_submissions = Submission.objects.filter(user=user).order_by('-created_at')[:5]
 
     context = {
         'total_problems': total_problems,
@@ -73,9 +75,11 @@ def profile(request):
     solved_problems = []
 
     for sub in accepted_subs:
-        if sub.problem.id not in solved_problem_ids:
-            solved_problem_ids.add(sub.problem.id) # type: ignore
-            solved_problems.append(sub.problem)
+        if sub.problem:
+            pid = str(sub.problem.id)
+            if pid not in solved_problem_ids:
+                solved_problem_ids.add(pid) # type: ignore
+                solved_problems.append(sub.problem)
 
     solved_count = len(solved_problem_ids)
 
