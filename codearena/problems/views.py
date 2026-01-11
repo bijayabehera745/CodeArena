@@ -3,6 +3,7 @@ from .models import Problem
 from django.contrib.auth.decorators import login_required
 from submissions.models import Submission
 from django.shortcuts import redirect
+from bson import ObjectId
 
 
 @login_required
@@ -24,7 +25,7 @@ def problem_list(request):
 
 @login_required
 def problem_detail(request, problem_id):
-    problem = get_object_or_404(Problem, id=problem_id)
+    problem = get_object_or_404(Problem, _id=ObjectId(problem_id))
 
     if request.method == "POST":
         code = request.POST['code']

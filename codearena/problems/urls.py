@@ -3,5 +3,5 @@ from .views import problem_list, problem_detail
 
 urlpatterns = [
     path('', problem_list, name='problem_list'),
-    path('<int:problem_id>/', problem_detail, name='problem_detail'),
+    path('<str:problem_id>/', problem_detail, name='problem_detail'),
 ]
