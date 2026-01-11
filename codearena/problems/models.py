@@ -17,5 +17,9 @@ class Problem(models.Model):
     test_input = models.TextField()      # hidden input
     expected_output = models.TextField()  # hidden output
 
+    @property
+    def id(self):
+        return str(self._id)
+
     def __str__(self):
         return self.title
